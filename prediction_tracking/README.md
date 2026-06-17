@@ -6,6 +6,11 @@
 
 - `daily_predictions.csv`：主台账，每条记录是一只票的一次预测。
 - `accuracy_rules.md`：命中率判断规则。
+- `rule_based_daily_summary.csv`：只统计按你的交易规则筛出来的预测票，每个交易日一行。
+- `rule_based_daily_summary.md`：规则票每日复盘统计的可读版本。
+- `daily_review_summary.csv`：全量每日复盘总表，包含规则票和非规则博弈票。
+- `non_rule_daily_summary.csv`：只统计非规则进攻/高风险观察票。
+- `non_rule_daily_summary.md`：非规则进攻票每日复盘统计的可读版本。
 
 ## 记录流程
 
@@ -26,8 +31,8 @@
    - 复盘备注
 3. 每周统计：
    - 总命中率
+   - 交易规则票命中率
    - 核心票命中率
    - 弹性票命中率
    - 风险提示命中率
    - 最容易误判的题材/形态
-
