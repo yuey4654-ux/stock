@@ -42,4 +42,6 @@ desktop.ini
 *.log
 *.tmp
 *.temp
+*.inspect.ndjson
+*_corrupted_backup_*.csv
 ~$*
