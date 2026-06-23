@@ -1,2 +1,2 @@
-target_date,prediction_date,total,hit,partial_hit,miss,strict_hit_rate,adjusted_hit_rate,best_predictions,worst_predictions,main_error,next_note
+﻿目标日期,预测日期,总数,命中,部分命中,未命中,严格命中率,调整后命中率,最佳预测,最差预测,主要误差,后续备注
 2026-06-17,2026-06-16,6,5,0,1,83.3%,83.3%,"中国巨石; 蓝思科技H; 东睦股份; 英维克; 天赐材料","蓝色光标","AI传媒低位补涨未兑现；材料和AI硬件延续性更强","非规则票单独统计，不计入交易规则胜率；加速票只观察承接，不追高"
