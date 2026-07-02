@@ -50,3 +50,4 @@ temp_*
 # Generated data caches
 prediction_tracking/historical_backtest_cache/
 prediction_tracking/**/cache/
+prediction_tracking/**/*_cache/
