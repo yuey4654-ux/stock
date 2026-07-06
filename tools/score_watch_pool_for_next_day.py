@@ -3,9 +3,10 @@ import json
 import math
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date
 from pathlib import Path
-
-import requests
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,10 +27,11 @@ def fetch_kline(code):
         "klt": "101",
         "fqt": "1",
         "beg": "20260501",
-        "end": "20260701",
+        "end": date.today().strftime("%Y%m%d"),
     }
     try:
-        data = requests.get(url, params=params, timeout=12).json().get("data") or {}
+        with urlopen(f"{url}?{urlencode(params)}", timeout=12) as response:
+            data = json.loads(response.read().decode("utf-8")).get("data") or {}
         out = []
         for line in data.get("klines") or []:
             p = line.split(",")
