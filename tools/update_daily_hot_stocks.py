@@ -51,6 +51,8 @@ THEME_KEYWORDS = [
     ("低空/军工", ["低空", "军工", "航天", "航空"]),
 ]
 
+OBSERVATION_LEVELS = {"强势观察池", "轮动观察池", "低权重观察池", "降级观察池"}
+
 
 def today_string() -> str:
     return datetime.now().strftime("%Y-%m-%d")
@@ -212,6 +214,12 @@ def classify(name: str, direction: str, pct: float, score: float) -> tuple[str, 
     return theme, level
 
 
+def normalize_hot_level(current_level: str, fallback_level: str) -> str:
+    if current_level in OBSERVATION_LEVELS:
+        return current_level
+    return fallback_level
+
+
 def build_conditions(close_value: str, pct: float, theme: str) -> tuple[str, str]:
     try:
         close = float(close_value)
@@ -251,7 +259,7 @@ def merge_pool(hot_rows: list[dict], run_date: str) -> tuple[list[dict], list[di
             row = by_code[code]
             if theme and theme not in row.get("方向", ""):
                 row["方向"] = f"{row.get('方向', '')}/{theme}".strip("/")
-            row["当前层级"] = row.get("当前层级") or level
+            row["当前层级"] = normalize_hot_level(row.get("当前层级", ""), level)
             row["提醒条件"] = row.get("提醒条件") or remind
             row["降级条件"] = row.get("降级条件") or downgrade
             if source not in row.get("来源", ""):
