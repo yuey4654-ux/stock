@@ -1,5 +1,6 @@
 import csv
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 
 
@@ -77,6 +78,15 @@ def market_bucket(row: dict) -> str:
     return "其他"
 
 
+def date_sort_key(value: str) -> datetime:
+    for pattern in ("%Y/%m/%d", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(value, pattern)
+        except ValueError:
+            continue
+    return datetime.max
+
+
 def main() -> None:
     rows = read_csv(LEDGER)
     reviewed = [
@@ -103,7 +113,7 @@ def main() -> None:
 
     for label in ["稳健观察", "核心承接", "条件观察", "弹性观察", "非规则观察", "其他"]:
         groups.append((label, by_type[label]))
-    for date_key in sorted(k for k in by_date if k):
+    for date_key in sorted((k for k in by_date if k), key=date_sort_key):
         groups.append((date_key, by_date[date_key]))
 
     out_rows = [{"分类": label, **summarize(group_rows)} for label, group_rows in groups]
