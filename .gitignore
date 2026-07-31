@@ -52,3 +52,6 @@ outputs/
 prediction_tracking/historical_backtest_cache/
 prediction_tracking/**/cache/
 prediction_tracking/**/*_cache/
+
+# Separate local projects (nested repositories and their build/cache data)
+quant-engine-v10/
