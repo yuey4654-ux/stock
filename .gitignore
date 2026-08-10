@@ -47,6 +47,11 @@ desktop.ini
 temp_*
 ~$*
 
+# One-off local prediction maintenance scripts
+prediction_tracking/close_loop_*.ps1
+prediction_tracking/expand_predictions_*.ps1
+prediction_tracking/update_review_*.py
+
 # Generated data caches
 outputs/
 prediction_tracking/historical_backtest_cache/
